@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্যাক্টস বাংলাদেশ | সত্য ও যাচাইকৃত সংবাদ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SolaimanLipi', Arial, sans-serif; }
+        body { background-color: #f4f6f9; color: #333; line-height: 1.6; }
+        header { background-color: #bd2130; color: white; text-align: center; padding: 30px 10px; }
+        nav { background-color: #212529; color: white; text-align: center; padding: 12px; position: sticky; top: 0; z-index: 1000; }
+        
+        .filter-section { background: #fff; padding: 20px; text-align: center; border-bottom: 2px solid #ddd; }
+        select { padding: 10px; margin: 5px; border-radius: 5px; border: 1px solid #ccc; cursor: pointer; }
+        
+        .container { max-width: 900px; margin: 20px auto; padding: 0 15px; }
+        .news-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border-left: 5px solid #bd2130; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .news-card h2 { color: #bd2130; margin-bottom: 10px; }
+        .news-meta { font-size: 0.8rem; color: #777; margin-bottom: 10px; }
+        
+        footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>ফ্যাক্টস বাংলাদেশ</h1>
+        <p>সত্য ও যাচাইকৃত সংবাদ, সবার আগে</p>
+    </header>
+
+    <nav>ফ্যাক্টস বাংলাদেশ নিউজ পোর্টাল</nav>
+
+    <!-- ফিল্টারিং সেকশন -->
+    <div class="filter-section">
+        <select id="district-filter" onchange="filterNews()">
+            <option value="all">সব জেলা</option>
+            <option value="dhaka">ঢাকা</option>
+            <option value="chittagong">চট্টগ্রাম</option>
+        </select>
+        
+        <select id="thana-filter" onchange="filterNews()">
+            <option value="all">সব থানা</option>
+            <option value="mirpur">মিরপুর</option>
+            <option value="savar">সাভার</option>
+            <option value="kotwali">কোতোয়ালি</option>
+        </select>
+    </div>
+
+    <!-- নিউজ কনটেইনার -->
+    <div class="container" id="news-container">
+        
+        <article class="news-card" data-district="dhaka" data-thana="mirpur">
+            <h2>মিরপুরে নতুন প্রকল্পের উদ্বোধন</h2>
+            <div class="news-meta">জেলা: ঢাকা | থানা: মিরপুর</div>
+            <p>মিরপুর এলাকায় আজ সকালে একটি নতুন উন্নয়ন প্রকল্পের উদ্বোধন করা হয়েছে।</p>
+        </article>
+        
+        <article class="news-card" data-district="dhaka" data-thana="savar">
+            <h2>সাভারে যানজট নিরসনে নতুন উদ্যোগ</h2>
+            <div class="news-meta">জেলা: ঢাকা | থানা: সাভার</div>
+            <p>সাভারের যানজট কমাতে ট্রাফিক পুলিশের বিশেষ মহড়া চলছে।</p>
+        </article>
+
+        <article class="news-card" data-district="chittagong" data-thana="kotwali">
+            <h2>কোতোয়ালিতে ব্যবসায়ীদের মতবিনিময়</h2>
+            <div class="news-meta">জেলা: চট্টগ্রাম | থানা: কোতোয়ালি</div>
+            <p>চট্টগ্রাম কোতোয়ালি থানা এলাকায় ব্যবসায়ীদের নিরাপত্তা নিয়ে মতবিনিময় সভা অনুষ্ঠিত হয়েছে।</p>
+        </article>
+    </div>
+
+    <script>
+        function filterNews() {
+            const district = document.getElementById('district-filter').value;
+            const thana = document.getElementById('thana-filter').value;
+            const newsCards = document.getElementsByClassName('news-card');
+            
+            for (let card of newsCards) {
+                const matchDistrict = (district === 'all' || card.getAttribute('data-district') === district);
+                const matchThana = (thana === 'all' || card.getAttribute('data-thana') === thana);
+                
+                if (matchDistrict && matchThana) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+    <footer>&copy; ২০২৬ ফ্যাক্টস বাংলাদেশ। সব স্বত্ব সংরক্ষিত।</footer>
+
+</body>
+</html>
